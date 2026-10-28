@@ -141,7 +141,6 @@ sudo reboot
 | | |
 | --- | --- |
 | Works | Finger touch, multi-finger gestures (tested 2026-10-28 on one 15-inch Laptop 7) |
-| Not working / untested | Rnote finger drawing (needs an app setting, see below), active pen, suspend/resume, repeat-boot reliability, 13-inch model, other kernels |
 | Fix | [patches/001-touch/fix/romulus15-touchscreen.dtso](patches/001-touch/fix/romulus15-touchscreen.dtso) + [install-touchscreen.sh](patches/001-touch/fix/install-touchscreen.sh) |
 | Test | [patches/001-touch/test/test-touchscreen.sh](patches/001-touch/test/test-touchscreen.sh) |
 | Tracking issue | [#13](https://github.com/bryce-hoehn/linux-surface-laptop-7/issues/13) |
@@ -176,10 +175,6 @@ Then choose one:
 normal-boot DTB if the fix was installed, deletes the test GRUB entry
 (including its 15-second menu timeout) and the test DTB, and leaves the
 original backup file in place. The sections below describe each step in detail.
-
-For finger drawing in Rnote, enable **Draw With Touch Input** in its canvas
-menu; upstream defaults this option to off. This is separate from kernel
-touchscreen support and does not establish active-pen support.
 
 The overlay is
 [romulus15-touchscreen.dtso](patches/001-touch/fix/romulus15-touchscreen.dtso).
@@ -308,7 +303,7 @@ does not patch future kernels automatically.
 * Published Romulus 13/15 ACPI tables (`SSDT.dsl` `GTCH`, `DSDT.dsl` `SP11`): <https://github.com/aarch64-laptops/build/tree/master/misc/microsoft-surface-romulus13_and_15>
 * ELLX kernel (provides the QSPI and `spi_hid` drivers used here): <https://github.com/ProgrammerIn-wonderland/ELLX-Kernel>
 * Linux device-tree overlay docs: <https://docs.kernel.org/devicetree/overlay-notes.html>
-* Rnote (for the touch-drawing setting): <https://github.com/flxzt/rnote>
+
 
 ### Factory MAC Addresses
 Both the ELLX prebuilds and the manual WiFi/Bluetooth instructions currently make up a random MAC address on each boot. This breaks DHCP reservations and may cause your device to sign out of the WiFi network each boot. An experimental patch is available [here](https://github.com/valeronm/sl7-mac).
